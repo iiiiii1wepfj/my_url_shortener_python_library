@@ -17,6 +17,10 @@ class SlugIsNotExists(Exception):
     pass
 
 
+class UnknownError(Exception):
+    pass
+
+
 class UrlShort:
     def __init__(self, api_url: Optional[str] = default_api_url):
         self.api_url = (
@@ -56,7 +60,7 @@ class UrlShort:
             )
             request_json = send_request.json()
             if send_request.status_code == 404:
-                raise SlugIsAlreadyExists(request_json["detail"])
+                raise SlugIsNotExists(request_json["detail"])
             else:
                 return request_json
 
@@ -68,3 +72,19 @@ class UrlShort:
             send_request = await http.post(f"{self.api_url}/api/all")
             request_json = send_request.json()
             return request_json["count"]
+
+    async def get_link_qr(self, slug: str):
+        """
+        Get the qr code of the short link.
+        parameters:
+        slug (str): the slug.
+        """
+        async with httpx.AsyncClient(http2=True) as http:
+            send_request = await http.post(f"{self.api_url}/{slug}/qr")
+            if send_request.status_code == 404:
+                request_json = send_request.json()
+                raise SlugIsNotExists(request_json["detail"])
+            elif send_request.status_code == 200:
+                return send_request.read()
+            else:
+                raise UnknownError(f"status code: {send_request.status_code}")
