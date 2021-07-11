@@ -15,3 +15,14 @@ async def main():
 
 asyncio.run(main())
    ```
+
+   ```
+from urlshortlib import UrlShort
+import asyncio
+urlshort = UrlShort()
+async def main():
+ a = await urlshort.get_link_qr(slug="duckduckgo")
+ with open("test.png", "wb") as img:
+  img.write(a)
+asyncio.run(main())
+   ```
