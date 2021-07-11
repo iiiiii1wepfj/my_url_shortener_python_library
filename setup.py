@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf8") as fh:
 
 setuptools.setup(
     name="urlshortlib",
-    version="1",
+    version="2",
     author="Itay K",
     author_email="itayki98@gmail.com",
     description="A Python Wrapper for s.itayki.com",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/iiiiii1wepfj/my_url_shortener_python_library",
     packages=setuptools.find_packages(),
-    download_url = 'https://github.com/iiiiii1wepfj/my_url_shortener_python_library/archive/refs/tags/v1.tar.gz',
+    download_url = 'https://github.com/iiiiii1wepfj/my_url_shortener_python_library/archive/refs/tags/v2.tar.gz',
     project_urls={'Documentation': 'https://s.itayki.com/docs', 'Source': 'https://github.com/iiiiii1wepfj/my_url_shortener_python_library'},
     classifiers=[
         "Programming Language :: Python :: 3",
