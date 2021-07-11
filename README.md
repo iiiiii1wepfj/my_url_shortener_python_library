@@ -11,7 +11,7 @@ from urlshortlib import UrlShort
 import asyncio
 urlshort = UrlShort(api_url="https://s.itayki.com")
 async def main():
- print(await urlshort.get_links_count())
+     print(await urlshort.get_links_count())
 
 asyncio.run(main())
    ```
@@ -21,8 +21,8 @@ from urlshortlib import UrlShort
 import asyncio
 urlshort = UrlShort()
 async def main():
- a = await urlshort.get_link_qr(slug="duckduckgo")
- with open("test.png", "wb") as img:
-  img.write(a)
+    a = await urlshort.get_link_qr(slug="duckduckgo")
+    with open("test.png", "wb") as img:
+          img.write(a)
 asyncio.run(main())
    ```
