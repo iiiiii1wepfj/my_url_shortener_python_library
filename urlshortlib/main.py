@@ -88,3 +88,22 @@ class UrlShort:
                 return send_request.read()
             else:
                 raise UnknownError(f"status code: {send_request.status_code}")
+
+    async def get_link_click_stats(self, slug: str):
+        """
+        Get the click stats of the short link.
+        parameters:
+        slug (str): the slug.
+        """
+        async with httpx.AsyncClient(http2=True) as http:
+            request_params = dict(slug=slug)
+            send_request = await http.post(
+                f"{self.api_url}/api/click_stats", params=request_params
+            )
+            if send_request.status_code == 404:
+                request_json = send_request.json()
+                raise SlugIsNotExists(request_json["detail"])
+            elif send_request.status_code == 200:
+                return send_request.read()
+            else:
+                raise UnknownError(f"status code: {send_request.status_code}")
