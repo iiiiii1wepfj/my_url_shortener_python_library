@@ -2,7 +2,7 @@ import httpx, re
 from typing import Optional
 
 
-default_api_url = "https://s.itayki.com"
+default_api_url: str = "https://s.itayki.com"
 
 
 class SlugIsAlreadyExists(Exception):
